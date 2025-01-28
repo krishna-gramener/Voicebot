@@ -15,10 +15,11 @@ let dc;
 let responses;
 
 async function getSession() {
+  const { token } = await fetch("https://llmfoundry.straive.com/token", { credentials: "include" }).then((r) => r.json());
   const response = await fetch("https://llmfoundry.straive.com/openai/v1/realtime/sessions", {
     method: "POST",
     headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtyaXNobmEua3VtYXJAZ3JhbWVuZXIuY29tIn0.QY0QNLADfGARpZvcew8DJgrtMtdxJ8NHUn9_qnSiWEM:llmfoundry-talk`,
+      Authorization: `Bearer ${token}:llmfoundry-talk`,
       "Content-Type": "application/json",
       "Cache-Control": "no-cache",
     },
